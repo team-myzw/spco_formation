@@ -1,0 +1,7 @@
+Max_x_value_of_map 10
+Max_y_value_of_map 10
+Min_x_value_of_map -10
+Min_y_value_of_map -10
+Number_of_place 13
+Initial_data_number 1
+Last_data_number 275
