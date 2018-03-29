@@ -91,16 +91,14 @@ else:
     FEATURE_DIM =4096
 Stick_large_L=100
 sigma_init = 100.0 #initial covariance value
-#iteration = 100 #iteration num
-iteration = 20 #iteration num
+iteration = 50 #iteration num
 #=========================Hyper parameter=====================
 hyper_para=np.loadtxt("../parameter/gibbs_hyper_parameter.txt",delimiter=" #",skiprows=2)
 alfa = hyper_para[0]
 kappa_0=hyper_para[1]
 nu_0=hyper_para[2]
 mu_0=np.array([map_center_x,map_center_y,0.0,0.0])
-#psai_0=np.matrix([[0.05,0.0,0.0,0.0],[0.0,0.05,0.0,0.0],[0.0,0.0,0.05,0.0],[0.0,0.0,0.0,0.05]])
-psai_0=np.matrix([[5.0,0.0,0.0,0.0],[0.0,5.0,0.0,0.0],[0.0,0.0,5.0,0.0],[0.0,0.0,0.0,5.0]])
+psai_0=np.matrix([[1.0,0.0,0.0,0.0],[0.0,1.0,0.0,0.0],[0.0,0.0,1.0,0.0],[0.0,0.0,0.0,1.0]])
 gamma=hyper_para[3]
 beta =hyper_para[4]
 S=10 
@@ -185,11 +183,7 @@ def gibbs(data_pose,data_feature,data_word,word_data_ind):
             prob_C_t =np.exp(prob_C_t)
             prob_C_t = Prob_Cal.normalize(prob_C_t)#Normalize weight.
 
-	    #print prob_C_t
-	    #print pi
-
             data_c[d] =np.random.choice(C_t,p=prob_C_t)
-	    
             print 'Iteration:',iter+1,'Data:',d+DATA_initial_index,'max_prob',max_class,":",prob_C_t[max_class],'Class index',data_c[d]
 		 
         #<<<<<Sampling Gaussian parameter Myu_Ct , Sigma_Ct.

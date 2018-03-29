@@ -14,7 +14,7 @@ class GetWordFeature(object):
         for x in xrange(self.vocabulary_list_size):
             if self.vocabulary_list[x] in result:
                 result = self.vocabulary_list[x]
-		csv_flag = True
+                csv_flag = True
                 break
 
         if csv_flag:

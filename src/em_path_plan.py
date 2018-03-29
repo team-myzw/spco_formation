@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-#move_base: https://docs.hsr.io/manual/development/navigation_tutorial.html#topic
-
 import math
 import actionlib
 from actionlib_msgs.msg import GoalStatus

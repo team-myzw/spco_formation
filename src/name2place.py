@@ -38,7 +38,6 @@ for f in file:
 
 pi = np.loadtxt(RESULT_PATH + trial_name + "/pi.csv")
 
-#f = open(TRAINING_PATH + trial_name + "/space_name.txt")
 f = open(TRAINING_PATH + "trial" + "/space_name.txt")
 hoge = f.read()
 f.close()
@@ -56,11 +55,11 @@ for x in xrange(len(mu)):
     prob[x] = w[x][word_class] * pi[x]
 
 # print prob
-# print np.argmax(prob)
+print np.argmax(prob)
 c = np.argmax(prob)
 
 print mu[c]
-print sigma[c]
+#print sigma[c]
 
-print multivariate_normal.rvs(mean = mu[c], cov = sigma[c], size = 1)
+#print multivariate_normal.rvs(mean = mu[c], cov = sigma[c], size = 1)
 
