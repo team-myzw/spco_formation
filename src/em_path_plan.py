@@ -40,7 +40,7 @@ import tf.transformations
 
 def MoveCallback(msg):
     print "Goal Subscribe\n"
-    print "Move to (" + str(msg.pose.position.x) + " , " + str(msg.pose.position.y) + " , " + str(rad*180/math.pi) + ")"
+    print "Move to (" + str(msg.pose.position.x) + " , " + str(msg.pose.position.y) + ")"
 
     cli = actionlib.SimpleActionClient('/move_base', MoveBaseAction)
     cli.wait_for_server()
