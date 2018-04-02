@@ -6,7 +6,8 @@ import numpy as np
 import re
 from scipy.stats import multivariate_normal
 import rospy
-from geometry_msgs.msg import Point
+from geometry_msgs.msg import PoseStamped
+#from geometry_msgs.msg import Point
 from std_msgs.msg import String
 
 
@@ -16,7 +17,7 @@ RESULT_PATH = "../result/"
 trial_name = sys.argv[1]
 #target_place = sys.argv[2]
 
-pub_place = rospy.Publisher("/spco/place_pub", Point, queue_size=1)
+pub_place = rospy.Publisher("/spco/place_pub", PoseStamped, queue_size=1)
 
 def NameCallback(msg):
 
@@ -69,13 +70,17 @@ def NameCallback(msg):
     #print mu[c]
     #print sigma[c]
 
-    place_xy = Point()
+    place_xy = PoseStamped()
     hoge = multivariate_normal.rvs(mean = mu[c], cov = sigma[c], size = 1)
     #place_xy.x = mu[c][0]
     #place_xy.y = mu[c][1]
-    place_xy.x = hoge[0]
-    place_xy.y = hoge[1]
-    place_xy.z = 0
+    #place_xy.x = hoge[0]
+    #place_xy.y = hoge[1]
+    #place_xy.z = 0
+    place_xy.pose.position.x = hoge[0]
+    place_xy.pose.position.y = hoge[1]
+    pose.pose.orientation.z = hoge[2] / (2 * np.sqrt(hoge[3]))
+    pose.pose.orientation.w = np.sqrt(hoge[3])
     print place_xy
     pub_place.publish(place_xy)
 
