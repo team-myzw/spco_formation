@@ -79,8 +79,8 @@ def NameCallback(msg):
     #place_xy.z = 0
     place_xy.pose.position.x = hoge[0]
     place_xy.pose.position.y = hoge[1]
-    pose.pose.orientation.z = hoge[2] / (2 * np.sqrt(hoge[3]))
-    pose.pose.orientation.w = np.sqrt(hoge[3])
+    place_xy.pose.orientation.z = hoge[2] / (2 * np.sqrt(abs(hoge[3])))
+    place_xy.pose.orientation.w = np.sqrt(abs(hoge[3]))
     print place_xy
     pub_place.publish(place_xy)
 
