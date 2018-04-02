@@ -3,5 +3,5 @@
 5.0 #alfa_0:Parameter of Dirichlet distribution for image features.
 0.03 #kappa_0:Parameter of Gaussian distribution for the robot position.
 15 #nu_0:Parameter of Gaussian distribution for the robot position.
-1000000000 #gamma:Parameter of Dirichlet distribution for the class index.
-1.0 #beta:Parameter of Dirichlet distribution for words.
+10000000 #gamma:Parameter of Dirichlet distribution for the class index.
+0.01 #beta:Parameter of Dirichlet distribution for words.

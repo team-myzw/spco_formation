@@ -12,8 +12,8 @@ import tf.transformations
 
 #actionでゴールを与える
 def MoveCallback(msg):
-    goal_x = msg.pose.position.x
-    goal_y = msg.pose.position.y
+    goal_x = msg.x
+    goal_y = msg.y
     rad = math.atan2(goal_y,goal_x)
     print "Goal Subscribe\n"
     print "Move to (" + str(goal_x) + " , " + str(goal_y) + " , " + str(rad*180/math.pi) + ")"
@@ -65,7 +65,7 @@ def TestCallback(msg):
 
 def run():
     rospy.init_node('em_path_plan', anonymous=True)
-    rospy.Subscriber("/goal/request",PoseStamped,MoveCallback)
+    rospy.Subscriber("/spco/place_pub",Point,MoveCallback)
     rospy.Subscriber("/test",Bool,TestCallback)
     rospy.spin()
 

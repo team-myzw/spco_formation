@@ -46,7 +46,7 @@ def NameCallback(msg):
 
     pi = np.loadtxt(RESULT_PATH + trial_name + "/pi.csv")
 
-    f = open(TRAINING_PATH + trial_name + "/space_name.txt")
+    f = open(TRAINING_PATH + "trial" + "/space_name.txt")
     hoge = f.read()
     f.close()
     place_name = hoge.split('\n')
@@ -66,13 +66,15 @@ def NameCallback(msg):
     # print np.argmax(prob)
     c = np.argmax(prob)
 
-    print mu[c]
-    print sigma[c]
+    #print mu[c]
+    #print sigma[c]
 
     place_xy = Point()
-    #place_xy = multivariate_normal.rvs(mean = mu[c], cov = sigma[c], size = 1)
-    place_xy.x = mu[c][0]
-    place_xy.y = mu[c][1]
+    hoge = multivariate_normal.rvs(mean = mu[c], cov = sigma[c], size = 1)
+    #place_xy.x = mu[c][0]
+    #place_xy.y = mu[c][1]
+    place_xy.x = hoge[0]
+    place_xy.y = hoge[1]
     place_xy.z = 0
     print place_xy
     pub_place.publish(place_xy)
