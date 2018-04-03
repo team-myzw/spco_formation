@@ -20,7 +20,7 @@
 
 ###### Training
 
-1. `__init__.py`のトピック名をデータセットに合わせる 
+1. `__init__.py`のトピック名をデータセットに合わせる。`TRIALNAME`は保存したいデータセットの名前を設定 
 2. `roslaunch spco_formation em_spco_formation.launch`
 
 学習済データはspco_formationディレクトリ直下に保存されます．  
@@ -30,10 +30,10 @@
 ###### Navigation
 
 1. `roslaunch spco_formation em_navigation.launch` 
-2. `python em_name2place.py` 
+2. `python em_name2place.py <<TRIALNAME>>` 
 3. `/spco/name_sub`に移動したい場所の名前を送る 
 
 ###### estimate place name
 
-1. `python em_place2name.py` 
+1. `python em_place2name.py <<TRIALNAME>>` 
 2. `/spco/place_sub`に場所の座標を送る
