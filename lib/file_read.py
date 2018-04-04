@@ -163,11 +163,11 @@ def word_data_read(diric,DATA_NUM,space_name,DATA_initial_index,word_class,W):
     word_data_ind=[]
     for i in range(DATA_NUM):
         word=[0 for n in range(word_class)]
-        signal=(diric+"/word/word"+repr(i+DATA_initial_index)+".txt") in file
+        signal=(diric+"/word/"+repr(i+DATA_initial_index)+".txt") in file
         
         if signal==True:
             word_data_ind.append(i)
-            f=open(diric+"/word/word"+repr(i+DATA_initial_index)+".txt","r")
+            f=open(diric+"/word/"+repr(i+DATA_initial_index)+".txt","r")
             data=f.read()
             line=data.split("\n")
 
