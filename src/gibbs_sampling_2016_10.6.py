@@ -332,12 +332,12 @@ def gibbs(data_pose,data_feature,data_word,word_data_ind):
 	
     #=====Saving===========================================
     
-    makdirs(Out_put_dir)
-    makdirs(Out_put_dir+"/mu")
-    makdirs(Out_put_dir+"/sigma")
-    makdirs(Out_put_dir+"/image_multi")
-    makdirs(Out_put_dir+"/class")
-    makdirs(Out_put_dir+"/word")
+    makedirs(Out_put_dir)
+    makedirs(Out_put_dir+"/mu")
+    makedirs(Out_put_dir+"/sigma")
+    makedirs(Out_put_dir+"/image_multi")
+    makedirs(Out_put_dir+"/class")
+    makedirs(Out_put_dir+"/word")
     for i in xrange(clas_num):
         #Writing parameter of positional Gaussian dist
         np.savetxt(Out_put_dir+"/mu/gauss_mu"+repr(i)+".csv",Myu_Ct[i])
