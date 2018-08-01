@@ -15,6 +15,7 @@ TRIALNAME = "trial"
 IMAGE_TOPIC = "/hsrb/head_rgbd_sensor/rgb/image_raw"
 #VOCAB_TOPIC = "/spco/word_result"
 VOCAB_TOPIC = "/AudioSentence"
-POSE_TOPIC = "/amcl_pose"
+# POSE_TOPIC = "/amcl_pose"
+POSE_TOPIC = "/laser_2d_pose"
 
 DATASET_FOLDER = "../data/"

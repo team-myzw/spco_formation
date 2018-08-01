@@ -14,6 +14,7 @@ import re
 LAYER="prob"
 def main(argv):
     pycaffe_dir = os.path.dirname(__file__)
+    pycaffe_dir = os.path.expanduser("~/caffe")
 
     parser = argparse.ArgumentParser()
     # Required arguments: input and output files.
@@ -25,13 +26,13 @@ def main(argv):
     parser.add_argument(
         "--model_def",
         default=os.path.join(pycaffe_dir,
-                "../caffe/models/bvlc_reference_caffenet/deploy.prototxt"),
+                "models/bvlc_reference_caffenet/deploy.prototxt"),
         help="Model definition file."
     )
     parser.add_argument(
         "--pretrained_model",
         default=os.path.join(pycaffe_dir,
-                "../caffe/models/bvlc_reference_caffenet/bvlc_reference_caffenet.caffemodel"),
+                "models/bvlc_reference_caffenet/bvlc_reference_caffenet.caffemodel"),
         help="Trained model weights file."
     )
     parser.add_argument(
@@ -53,7 +54,7 @@ def main(argv):
     parser.add_argument(
         "--mean_file",
         default=os.path.join(pycaffe_dir,
-                             '../caffe/python/caffe/imagenet/ilsvrc_2012_mean.npy'),
+                             'python/caffe/imagenet/ilsvrc_2012_mean.npy'),
         help="Data set image mean of [Channels x Height x Width] dimensions " +
              "(numpy array). Set to '' for no mean subtraction."
     )
@@ -103,9 +104,12 @@ def main(argv):
     convert = lambda text: int(text) if text.isdigit() else text 
     alphanum_key = lambda key: [ convert(c) for c in re.split('([0-9]+)', key) ] 
     all_file.sort(key=alphanum_key)
-    os.mkdir(args.input_directory+"/feature_vector")
-    os.mkdir(args.input_directory+"/feature_rank")
-    categories = np.loadtxt("../caffe/data/ilsvrc12/synset_words.txt", str, delimiter="\t")
+    try:
+        os.mkdir(args.input_directory+"/feature_vector")
+        os.mkdir(args.input_directory+"/feature_rank")
+    except:
+        pass
+    categories = np.loadtxt(pycaffe_dir+"/data/ilsvrc12/synset_words.txt", str, delimiter="\t")
     start = time.time()
     i = 1
     for f in all_file:

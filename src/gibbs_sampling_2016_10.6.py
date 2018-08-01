@@ -26,6 +26,11 @@ import Multi
 import file_read as f_r
 import nonpara_tool
 
+def makedirs(path):
+    try:
+        os.makedirs(path)
+    except:
+        pass
 
 CNN_feature=0 #If you want to use image feature of 4096 dimensions,you shold set 1.
 
@@ -326,13 +331,13 @@ def gibbs(data_pose,data_feature,data_word,word_data_ind):
         print "Class num:"+repr(C_num)+"\n"
 	
     #=====Saving===========================================
-
-    os.mkdir(Out_put_dir)
-    os.mkdir(Out_put_dir+"/mu")
-    os.mkdir(Out_put_dir+"/sigma")
-    os.mkdir(Out_put_dir+"/image_multi")
-    os.mkdir(Out_put_dir+"/class")
-    os.mkdir(Out_put_dir+"/word")
+    
+    makdirs(Out_put_dir)
+    makdirs(Out_put_dir+"/mu")
+    makdirs(Out_put_dir+"/sigma")
+    makdirs(Out_put_dir+"/image_multi")
+    makdirs(Out_put_dir+"/class")
+    makdirs(Out_put_dir+"/word")
     for i in xrange(clas_num):
         #Writing parameter of positional Gaussian dist
         np.savetxt(Out_put_dir+"/mu/gauss_mu"+repr(i)+".csv",Myu_Ct[i])

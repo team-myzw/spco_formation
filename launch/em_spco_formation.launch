@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 
 <launch>
-  <arg name="map_file" default="$(find em_spco_formation)/training_data/trial/map/map.yaml"/>
+  <arg name="map_file" default="$(find em_spco_formation)/map/map.yaml"/>
 
   <node name="em_hsr_word_feature" pkg="em_spco_formation" type="em_hsr_word_feature.py" output="screen" cwd="node" />
   <node name="em_hsr_image_feature" pkg="em_spco_formation" type="em_hsr_image_feature.py" output="screen" cwd="node" />

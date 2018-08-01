@@ -1,4 +1,3 @@
-
 *.pyc
-
-data/*
+data/trial*
+notebooks/.ipynb_checkpoints
