@@ -37,7 +37,7 @@ class GetWordFeature(object):
 
         self.count = 0
         self.WORD_FOLDER = DATASET_FOLDER + TRIALNAME + "/word/"
-        self.vocabulary_list = ["書斎","詳細","寝室","キッチン","ドア前","真実","親子","風呂","プロ","フェイス","スイス","フォア前","黒"]
+        self.vocabulary_list = ["キッチン","リビング","ドア前"]
         self.vocabulary_list_size = len(self.vocabulary_list)
 
 if __name__ == '__main__':
