@@ -94,7 +94,7 @@ if CNN_feature==0:
     FEATURE_DIM =1000# Image feature dimension
 else:
     FEATURE_DIM =4096
-Stick_large_L=100
+Stick_large_L=3
 sigma_init = 100.0 #initial covariance value
 iteration = 50 #iteration num
 #=========================Hyper parameter=====================
