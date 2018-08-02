@@ -1,4 +1,8 @@
+#! /usr/bin/env python
 # -*- coding: utf-8 -*-
+
+from __init__ import *
+
 import os
 import rospy
 import message_filters
@@ -8,6 +12,13 @@ from audio_module_msg.msg import AudioSentence
 
 import cv2
 from cv_bridge import CvBridge, CvBridgeError
+
+p = subprocess.Popen("rm -rf " + DATASET_FOLDER + TRIALNAME, shell=True)
+sleep(1)
+p = subprocess.Popen("mkdir -p " + DATASET_FOLDER + TRIALNAME + "/image/", shell=True)
+p = subprocess.Popen("mkdir -p " + DATASET_FOLDER + TRIALNAME + "/position_data/", shell=True)
+p = subprocess.Popen("mkdir -p " + DATASET_FOLDER + TRIALNAME + "/word/", shell=True)
+print "mkdir "+ DATASET_FOLDER + TRIALNAME
 
 class SynchronizeSaver(object):
     def __init__(self, aollow_time_delay, pose_folder, image_folder, word_folder, debug_md=False): 
@@ -26,16 +37,16 @@ class SynchronizeSaver(object):
 
         self.aollow_time_delay = aollow_time_delay # sec
         ats = message_filters.ApproximateTimeSynchronizer([image_sub, laser2d_sub, audio_sub], 
-                                                            10, self.aollow_time_delay)
+                                                            1, self.aollow_time_delay)
         ats.registerCallback(self.approximate_synccallback)
 
         # other paramaters
         self.count = 0
         self.debug_md = debug_md
 
-    def seting_word_info(self, vocabulary_list):
-       self.vocabulary_list = vocabulary_list
-       self.vocabulary_list_size = len(self.vocabulary_list)
+        #seting_word_info
+        self.vocabulary_list = VOCABULARY
+        self.vocabulary_list_size = len(self.vocabulary_list)
   
 
     def approximate_synccallback(self, image, laser2d, audio):
@@ -70,14 +81,15 @@ class SynchronizeSaver(object):
         for x in xrange(self.vocabulary_list_size):
             if self.vocabulary_list[x] in result:
                 result = self.vocabulary_list[x]
-                with open(os.path.join(self.WORD_FOLDER, "{0}.txt".format(self.count-1)),'w') as fp:
+                with open(os.path.join(self.WORD_FOLDER, "{0}.txt".format(self.count)),'w') as fp:
                     fp.write(result+"\n")
-            break
+                break
 
 if __name__ == "__main__":
     rospy.init_node("synchronizer")
-    saver = SynchronizeSaver(10, "pose", "image", "word", debug_md=False)
-    vocabulary_list =  ["キッチン","ドア前","リビング"]
-    saver.seting_word_info(vocabulary_list)
+    pose_f = DATASET_FOLDER + TRIALNAME + "/position_data/"
+    image_f = DATASET_FOLDER + TRIALNAME + "/image/"
+    word_f = DATASET_FOLDER + TRIALNAME + "/word/"
+    saver = SynchronizeSaver(10, pose_f, image_f, word_f, debug_md=True)
     print ("synchronizer running..")
     rospy.spin()

@@ -1,4 +1,4 @@
-#
+# -*- coding: utf-8 -*-
 
 import rospy
 import math
@@ -19,3 +19,5 @@ VOCAB_TOPIC = "/AudioSentence"
 POSE_TOPIC = "/laser_2d_pose"
 
 DATASET_FOLDER = "../data/"
+
+VOCABULARY = ["キッチン","リビング","ドア前"]

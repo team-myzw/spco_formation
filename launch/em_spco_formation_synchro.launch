@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+
+<launch>
+  <arg name="map_file" default="$(find em_spco_formation)/map/map.yaml"/>
+
+  <node name="data_synchronizer" pkg="em_spco_formation" type="data_synchronizer.py" output="screen" cwd="node" />
+
+  <!-- 
+  <node name="amcl" pkg="amcl" type="amcl" output="screen" cwd="node">
+    <remap from="scan" to="/hsrb/base_scan"/>
+  </node>
+  -->
+
+  <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)"  output="screen" cwd="node" />
+
+  <node pkg="rviz" type="rviz" name="rviz" args="-d $(find em_spco_formation)/launch/em_spco_formation.rviz"/>
+
+</launch>
