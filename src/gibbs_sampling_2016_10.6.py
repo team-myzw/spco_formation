@@ -16,6 +16,7 @@ import glob
 import re
 import math
 import os
+import shutil
 from numpy.linalg import inv, cholesky
 from scipy.stats import chi2
 import time
@@ -94,7 +95,7 @@ if CNN_feature==0:
     FEATURE_DIM =1000# Image feature dimension
 else:
     FEATURE_DIM =4096
-Stick_large_L=3
+Stick_large_L=5
 sigma_init = 100.0 #initial covariance value
 iteration = 50 #iteration num
 #=========================Hyper parameter=====================
@@ -331,7 +332,10 @@ def gibbs(data_pose,data_feature,data_word,word_data_ind):
         print "Class num:"+repr(C_num)+"\n"
 	
     #=====Saving===========================================
-    
+    try:
+        shutil.rmtree(Out_put_dir)
+    except:
+        pass
     makedirs(Out_put_dir)
     makedirs(Out_put_dir+"/mu")
     makedirs(Out_put_dir+"/sigma")
