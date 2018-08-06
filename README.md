@@ -33,7 +33,7 @@
 #### Training
 
 1. rosbag2data(1/3)`__init__.py`のトピック名をデータセットに合わせる。`TRIALNAME`は保存したいデータセットの名前を設定 
-2. rosbag2data(2/3) `roslaunch em_spco_formation em_spco_formation.launch`
+2. rosbag2data(2/3) `roslaunch em_spco_formation em_spco_formation_synchro.launch`
 3. rosbag2data(3/3) `rosbag play -r 5 exp.bag`
 4. 画像特徴量の計算 `python Feature_vector_generator.py ../data/trial`
 5. パラメータコピー(1/4) `cp ../data/Environment_parameter.txt  ../data/trial/Environment_parameter.txt`
